@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7759431e303e2d722a264a8a991a9e84",
+    "content-hash": "7c03d097934e071f579a2a0623d22a9c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -121,6 +121,42 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "daniel/kafka-queue",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DanielVZA/kakfa-queue.git",
+                "reference": "30ca34720c430cea4bc3d352bbbba89340374f7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DanielVZA/kakfa-queue/zipball/30ca34720c430cea4bc3d352bbbba89340374f7f",
+                "reference": "30ca34720c430cea4bc3d352bbbba89340374f7f",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^8.40"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Daniel\\KafkaQueue\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "DanielVZA",
+                    "email": "danielvasquez@protonmail.com"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/DanielVZA/kakfa-queue/tree/master",
+                "issues": "https://github.com/DanielVZA/kakfa-queue/issues"
+            },
+            "time": "2022-06-11T18:11:20+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -7891,12 +7927,14 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "daniel/kafka-queue": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
