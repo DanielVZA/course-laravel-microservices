@@ -32,7 +32,7 @@ class OrderCompleted implements ShouldQueue
      */
     public function handle()
     {
-        var_dump("Sending emails");
+        print_r("\e[0;30;42mStatus: Sending emails\e[0m\n");
 
         \Mail::send('admin', ['order' => $this->data], function (Message $message) {
             $message->subject('An Order has been completed');
@@ -44,6 +44,6 @@ class OrderCompleted implements ShouldQueue
             $message->to($this->data['ambassador_email']);
         });
 
-        var_dump("Email sent");
+        print_r("\e[0;30;42mStatus: Email sent\e[0m\n");
     }
 }
