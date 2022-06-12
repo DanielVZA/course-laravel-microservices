@@ -42,6 +42,7 @@ class LinkController extends Controller
         $linkData['link_products'] = $linkProducts;
 
         LinkCreated::dispatch($linkData)->onQueue('checkout_topic');
+        LinkCreated::dispatch($linkData)->onQueue('admin_topic');
 
         return $link;
     }
