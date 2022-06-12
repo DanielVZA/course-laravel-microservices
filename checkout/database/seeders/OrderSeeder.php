@@ -30,6 +30,7 @@ class OrderSeeder extends Seeder
                 'city' => $order->city,
                 'country' => $order->country,
                 'zip' => $order->zip,
+                'complete' => $order->complete,
                 'created_at' => $order->created_at,
                 'updated_at' => $order->updated_at
             ]);
