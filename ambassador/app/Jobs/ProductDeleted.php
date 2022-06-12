@@ -10,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class ProductUpdated implements ShouldQueue
+class ProductDeleted implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -32,7 +32,6 @@ class ProductUpdated implements ShouldQueue
      */
     public function handle()
     {
-        $product = Product::find($this->data['id']);
-        $product->updated($this->data);
+        Product::destroy($this->data['id']);
     }
 }
