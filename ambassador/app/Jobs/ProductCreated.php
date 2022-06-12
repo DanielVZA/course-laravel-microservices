@@ -10,10 +10,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class ProductUpdated implements ShouldQueue
+class ProductCreated implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     public $data;
     /**
      * Create a new job instance.
@@ -32,7 +31,6 @@ class ProductUpdated implements ShouldQueue
      */
     public function handle()
     {
-        $product = Product::find($this->data['id']);
-        $product->updated($this->data);
+        Product::create($this->data);
     }
 }
