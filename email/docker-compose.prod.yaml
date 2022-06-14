@@ -1,0 +1,20 @@
+version: '3'
+services:
+  email_queue:
+    build: .
+    image: danielvza/email:0.0.1
+    environment:
+      MAIL_MAILER: smtp
+      MAIL_HOST: smtp.mailtrap.io
+      MAIL_PORT: 2525
+      MAIL_USERNAME: 36a85d3ce52485
+      MAIL_PASSWORD: 41105e3c51cb9d
+      MAIL_ENCRYPTION: TLS
+      KAFKA_QUEUE: email_topic
+      BOOTSTRAP_SERVERS: pkc-6ojv2.us-west4.gcp.confluent.cloud:9092
+      SECURITY_PROTOCOL: SASL_SSL
+      SASL_MECHANIMS: PLAIN
+      SASL_USERNAME: D5GWSOT474CHNM5F
+      SASL_PASSWORD: EvtYNE5YP4QNwCp77jIrnO/XPb+49tg6NEkxUnCR+UDst9AJuvfZna/ZitK1+Vpd
+      GROUP_ID: myGroup
+    command: 'php artisan queue:work'

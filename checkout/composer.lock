@@ -221,12 +221,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/DanielVZA/user-service.git",
-                "reference": "17e15704052974b54cb0b24ef90bde026661ad5f"
+                "reference": "31034db9fbcc1f9272f62089b046b508ed8c385a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DanielVZA/user-service/zipball/17e15704052974b54cb0b24ef90bde026661ad5f",
-                "reference": "17e15704052974b54cb0b24ef90bde026661ad5f",
+                "url": "https://api.github.com/repos/DanielVZA/user-service/zipball/31034db9fbcc1f9272f62089b046b508ed8c385a",
+                "reference": "31034db9fbcc1f9272f62089b046b508ed8c385a",
                 "shasum": ""
             },
             "require": {
@@ -249,7 +249,7 @@
                 "source": "https://github.com/DanielVZA/user-service/tree/master",
                 "issues": "https://github.com/DanielVZA/user-service/issues"
             },
-            "time": "2022-06-11T22:08:11+00:00"
+            "time": "2022-06-13T01:53:16+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -7649,5 +7649,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.1.0"
 }
