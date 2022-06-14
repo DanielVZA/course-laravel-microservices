@@ -1,0 +1,46 @@
+version: '3'
+services:
+  admin_backend:
+    build: .
+    image: danielvza/admin:0.0.2
+    environment:
+      DB_HOST: 34.134.126.120
+      DB_PORT: 3306
+      DB_DATABASE: admin
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      KAFKA_QUEUE: admin_topic
+      BOOTSTRAP_SERVERS: pkc-6ojv2.us-west4.gcp.confluent.cloud:9092
+      SECURITY_PROTOCOL: SASL_SSL
+      SASL_MECHANIMS: PLAIN
+      SASL_USERNAME: D5GWSOT474CHNM5F
+      SASL_PASSWORD: EvtYNE5YP4QNwCp77jIrnO/XPb+49tg6NEkxUnCR+UDst9AJuvfZna/ZitK1+Vpd
+      GROUP_ID: myGroup
+      QUEUE_CONNECTION: kafka
+      USERS_MS: http://users_ms:8000
+    ports:
+      - 8004:8000
+    command: >
+      sh -c "php artisan config:cache
+      && php artisan serve --host=0.0.0.0"
+
+  admin_queue:
+    build: .
+    environment:
+      DB_HOST: 34.134.126.120
+      DB_PORT: 3306
+      DB_DATABASE: admin
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      KAFKA_QUEUE: admin_topic
+      BOOTSTRAP_SERVERS: pkc-6ojv2.us-west4.gcp.confluent.cloud:9092
+      SECURITY_PROTOCOL: SASL_SSL
+      SASL_MECHANIMS: PLAIN
+      SASL_USERNAME: D5GWSOT474CHNM5F
+      SASL_PASSWORD: EvtYNE5YP4QNwCp77jIrnO/XPb+49tg6NEkxUnCR+UDst9AJuvfZna/ZitK1+Vpd
+      GROUP_ID: myGroup
+      QUEUE_CONNECTION: kafka
+      USERS_MS: http://users_ms:8000
+    command: >
+      sh -c "php artisan config:cache
+      && php artisan queue:work"

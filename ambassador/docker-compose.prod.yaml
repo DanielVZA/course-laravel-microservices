@@ -1,0 +1,60 @@
+version: '3'
+services:
+  ambassador_backend:
+    build: .
+    image: danielvza/ambassador:0.0.3
+    environment:
+      DB_HOST: 34.71.175.1
+      DB_PORT: 3306
+      DB_DATABASE: ambassador
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      KAFKA_QUEUE: ambassador_topic
+      BOOTSTRAP_SERVERS: pkc-6ojv2.us-west4.gcp.confluent.cloud:9092
+      SECURITY_PROTOCOL: SASL_SSL
+      SASL_MECHANIMS: PLAIN
+      SASL_USERNAME: D5GWSOT474CHNM5F
+      SASL_PASSWORD: EvtYNE5YP4QNwCp77jIrnO/XPb+49tg6NEkxUnCR+UDst9AJuvfZna/ZitK1+Vpd
+      GROUP_ID: myGroup
+      QUEUE_CONNECTION: kafka
+      CACHE_DRIVER: redis
+      REDIST_HOST: redis
+      REDIS_PASSWORD: null
+      REDIS_PORT: 6379
+      USERS_MS: http://users_ms:8000
+    ports:
+      - 8003:8000
+    command: >
+      sh -c "php artisan config:cache
+      && php artisan serve --host=0.0.0.0"
+
+  ambassador_queue:
+    build: .
+    image: danielvza/ambassador:0.0.3
+    environment:
+      DB_HOST: 34.71.175.1
+      DB_PORT: 3306
+      DB_DATABASE: ambassador
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      KAFKA_QUEUE: ambassador_topic
+      BOOTSTRAP_SERVERS: pkc-6ojv2.us-west4.gcp.confluent.cloud:9092
+      SECURITY_PROTOCOL: SASL_SSL
+      SASL_MECHANIMS: PLAIN
+      SASL_USERNAME: D5GWSOT474CHNM5F
+      SASL_PASSWORD: EvtYNE5YP4QNwCp77jIrnO/XPb+49tg6NEkxUnCR+UDst9AJuvfZna/ZitK1+Vpd
+      GROUP_ID: myGroup
+      QUEUE_CONNECTION: kafka
+      CACHE_DRIVER: file
+      REDIST_HOST: redis
+      REDIS_PASSWORD: null
+      REDIS_PORT: 6379
+      USERS_MS: http://users_ms:8000
+    command: >
+      sh -c "php artisan config:cache
+      && php artisan queue:work"
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379

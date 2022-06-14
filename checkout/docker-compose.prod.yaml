@@ -1,0 +1,48 @@
+version: '3'
+services:
+  checkout_backend:
+    build: .
+    image: danielvza/checkout:0.0.1
+    environment:
+      DB_HOST: 34.67.25.247
+      DB_PORT: 3306
+      DB_DATABASE: checkout
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      KAFKA_QUEUE: checkout_topic
+      BOOTSTRAP_SERVERS: pkc-6ojv2.us-west4.gcp.confluent.cloud:9092
+      SECURITY_PROTOCOL: SASL_SSL
+      SASL_MECHANIMS: PLAIN
+      SASL_USERNAME: D5GWSOT474CHNM5F
+      SASL_PASSWORD: EvtYNE5YP4QNwCp77jIrnO/XPb+49tg6NEkxUnCR+UDst9AJuvfZna/ZitK1+Vpd
+      GROUP_ID: myGroup
+      QUEUE_CONNECTION: kafka
+      STRIPE_SECRET: sk_test_51L1cwjHuFtteLT4Pz8NdbostNCeAjA94U0T2WTYioZvt6aZhhgGGYwtH0rg2PIvRAVd6uBvrNqGcZp1FXgGPibLS00GSbJH1XA
+      CHECKOUT_URL: http://localhost:5000
+      USERS_MS: http://users_ms:8000
+    ports:
+      - 8002:8000
+    command: >
+      sh -c "php artisan config:cache
+      && php artisan serve --host=0.0.0.0"
+  checkout_queue:
+    build: .
+    image: danielvza/checkout:0.0.1
+    environment:
+      DB_HOST: 34.67.25.247
+      DB_PORT: 3306
+      DB_DATABASE: checkout
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      KAFKA_QUEUE: checkout_topic
+      BOOTSTRAP_SERVERS: pkc-6ojv2.us-west4.gcp.confluent.cloud:9092
+      SECURITY_PROTOCOL: SASL_SSL
+      SASL_MECHANIMS: PLAIN
+      SASL_USERNAME: D5GWSOT474CHNM5F
+      SASL_PASSWORD: EvtYNE5YP4QNwCp77jIrnO/XPb+49tg6NEkxUnCR+UDst9AJuvfZna/ZitK1+Vpd
+      GROUP_ID: myGroup
+      QUEUE_CONNECTION: kafka
+      USERS_MS: http://users_ms:8000
+    command: >
+      sh -c "php artisan config:cache
+      && php artisan queue:work"
