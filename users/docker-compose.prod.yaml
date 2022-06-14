@@ -1,0 +1,16 @@
+version: '3'
+services:
+  users_backend:
+    build: .
+    image: danielvza/users:0.0.2
+    environment:
+      DB_HOST: users-db
+      DB_PORT: 3306
+      DB_DATABASE: users
+      DB_USERNAME: root
+      DB_PASSWORD: root
+    ports:
+      - 8001:8000
+    command: >
+      sh -c "php artisan config:cache
+      && php artisan serve --host=0.0.0.0"

@@ -1,0 +1,20 @@
+version: '3'
+services:
+  email_queue:
+    build: .
+    image: danielvza/email:0.0.1
+    environment:
+      MAIL_MAILER: smtp
+      MAIL_HOST: smtp.mailtrap.io
+      MAIL_PORT: 2525
+      MAIL_USERNAME: MAIL_USERNAME
+      MAIL_PASSWORD: MAIL_PASSWORD
+      MAIL_ENCRYPTION: TLS
+      KAFKA_QUEUE: email_topic
+      BOOTSTRAP_SERVERS: BOOTSTRAP_SERVERS
+      SECURITY_PROTOCOL: SASL_SSL
+      SASL_MECHANIMS: PLAIN
+      SASL_USERNAME: SASL_USERNAME
+      SASL_PASSWORD: SASL_PASSWORD
+      GROUP_ID: GROUP_ID
+    command: 'php artisan queue:work'

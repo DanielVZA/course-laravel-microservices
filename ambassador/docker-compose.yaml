@@ -3,7 +3,7 @@ services:
   ambassador_backend:
     build: .
     ports:
-      - 8001:8000
+      - 8002:8000
     volumes:
       - .:/app
     command: 'php artisan serve --host=0.0.0.0'
@@ -11,7 +11,6 @@ services:
       - ambassador_db
     networks:
       - ambassador
-      - users
 
   ambassador_queue:
     build: .
@@ -30,6 +29,8 @@ services:
       MYSQL_DATABASE: ambassador
       MYSQL_ROOT_PASSWORD: root
       MYSQL_PASSWORD: root
+    ports:
+      - 33066:3306
     volumes:
       - ./storage/dbdata:/var/lib/mysql
     networks:
@@ -43,7 +44,4 @@ services:
       - ambassador
 
 networks:
-  users:
-    external:
-      name: users
   ambassador:
